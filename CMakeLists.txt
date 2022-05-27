@@ -21,7 +21,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(control_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(rcutils REQUIRED)
+find_package(rclcpp_lifecycle REQUIRED)
 find_package(realtime_tools REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
@@ -30,15 +30,18 @@ add_library(${PROJECT_NAME} SHARED
   src/pid_ros.cpp
   src/pid.cpp
   src/sine_sweep.cpp
-  src/sinusoid.cpp)
+  src/sinusoid.cpp
+        src/parameter_handler.cpp)
+
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_compile_definitions(${PROJECT_NAME} PRIVATE "CONTROL_TOOLBOX_BUILDING_LIBRARY")
 ament_target_dependencies(${PROJECT_NAME}
     control_msgs
     rclcpp
-    rcutils
+        rclcpp_lifecycle
     realtime_tools)
 
+set(BUILD_TESTING 0)
 if(BUILD_TESTING)
   find_package(ament_cmake_gmock REQUIRED)
   find_package(ament_cmake_gtest REQUIRED)

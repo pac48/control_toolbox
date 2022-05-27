@@ -23,6 +23,7 @@
   <exec_depend>control_msgs</exec_depend>
 
   <depend>rclcpp</depend>
+  <depend>rclcpp_lifecycle</depend>
   <depend>rcutils</depend>
   <depend>realtime_tools</depend>
 
